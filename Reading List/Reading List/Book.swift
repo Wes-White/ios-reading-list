@@ -13,3 +13,4 @@ struct Book: Codable, Equatable {
     let reasonToRead: String
     let hasBeenRead: Bool = false
 }
+
