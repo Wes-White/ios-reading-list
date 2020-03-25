@@ -1,5 +1,5 @@
 //
-//  Book.swift
+//  BookTableViewDelegate.swift
 //  Reading List
 //
 //  Created by Wesley Ryan on 3/24/20.
@@ -8,9 +8,6 @@
 
 import Foundation
 
-struct Book: Codable, Equatable {
-    let title: String
-    var reasonToRead: String
-    var hasBeenRead: Bool = false
+protocol BookTableViewDelegate {
+    func toggleHasBeenRead(for cell: BookTableViewCell)
 }
-

@@ -9,17 +9,43 @@
 import Foundation
 
 class BookController {
+    
     var books: [Book] = []
+    
+    var unreadBooks: [Book] {
+        
+        return books.filter { $0.hasBeenRead == false }
+    }
+    
+    var readBooks: [Book] {
+        return books.filter { $0.hasBeenRead == true}
+    }
     
     init() {
         loadFromPersistentStore()
     }
+    
+    //MARK: CRUD FUNCTIONS
     
     func createBook(title: String, reasonToRead: String, hasBeenread: Bool) {
         let book = Book(title: title, reasonToRead: reasonToRead)
         books.append(book)
         saveToPersistentStore()
     }
+    
+    func updateHasBeenRead(for book: Book) {
+    
+        guard let book = books.firstIndex(of: book) else { return }
+        if books[book].hasBeenRead == true {
+            books[book].hasBeenRead.toggle()
+        }
+    }
+    
+    func updateBook(for book: Book) {
+        
+    }
+    
+    
     
     var readingListURL: URL? {
         //Where are we going to save and load our books?
